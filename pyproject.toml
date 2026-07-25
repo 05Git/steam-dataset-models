@@ -1,0 +1,7 @@
+[project]
+name = "steam-data-analysis"
+version = "0.1.0"
+description = "Doing analysis on a steam sales dataset from kaggle"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
