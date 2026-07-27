@@ -4,4 +4,16 @@ version = "0.1.0"
 description = "Doing analysis on a steam sales dataset from kaggle"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "ipykernel>=7.3.0",
+    "pandas>=3.0.5",
+    "polars>=1.43.0",
+    "seaborn>=0.13.2",
+    "tabulate>=0.10.0",
+    "torch>=2.13.0",
+    "torchvision>=0.28.0",
+]
+
+[[tool.uv.index]]
+name="pytorch"
+url = "https://download.pytorch.org/whl/cu126"
