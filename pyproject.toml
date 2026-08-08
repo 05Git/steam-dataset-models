@@ -7,6 +7,7 @@ requires-python = ">=3.14"
 dependencies = [
     "dotenv>=0.9.9",
     "ipykernel>=7.3.0",
+    "json-repair>=0.62.0",
     "pandas>=3.0.5",
     "polars>=1.43.0",
     "requests>=2.28.1",

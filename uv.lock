@@ -399,6 +399,15 @@ wheels = [
 ]
 
 [[package]]
+name = "json-repair"
+version = "0.62.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/82/f0/99922cd499612b1eb70f177d34f7f34a489bb0255c946992ca70415a7288/json_repair-0.62.0.tar.gz", hash = "sha256:578bdfe4b3e177ad5a93a0f4e31ec71c953b2a282c72403ddd0c77058fae0d83", size = 51990, upload-time = "2026-08-05T09:13:04.731Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/63/45/924a75372c1a264068158eb5b557932d15a4e42cbbb9e14a73ca076d3c01/json_repair-0.62.0-py3-none-any.whl", hash = "sha256:1ea917bb2eae205a2c012ab2aa1c0bc6ea9ac708836d203577fac46fcd84f443", size = 50572, upload-time = "2026-08-05T09:13:03.318Z" },
+]
+
+[[package]]
 name = "jupyter-client"
 version = "8.9.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1071,6 +1080,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "dotenv" },
     { name = "ipykernel" },
+    { name = "json-repair" },
     { name = "pandas" },
     { name = "polars" },
     { name = "requests" },
@@ -1084,6 +1094,7 @@ dependencies = [
 requires-dist = [
     { name = "dotenv", specifier = ">=0.9.9" },
     { name = "ipykernel", specifier = ">=7.3.0" },
+    { name = "json-repair", specifier = ">=0.62.0" },
     { name = "pandas", specifier = ">=3.0.5" },
     { name = "polars", specifier = ">=1.43.0" },
     { name = "requests", specifier = ">=2.28.1" },

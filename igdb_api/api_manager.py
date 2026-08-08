@@ -1,18 +1,13 @@
-import json
-import os
-import sys
 import time
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any
 
 import requests
-from dotenv import load_dotenv
 
 BASE_URL = "https://api.igdb.com/v4"
 
 @dataclass
-class IGDBAPIStuff:
+class IGDBAPIManager:
     client_id: str
     client_secret: str
     _access_token: str | None = None
@@ -57,41 +52,24 @@ class IGDBAPIStuff:
     def post_request(
         self,
         endpoint: str,
+        data: dict[str, str],
         *,
         request_url: str = BASE_URL
-    ) -> dict[str, Any] | list[Any]:
+    ) -> list[dict[str, Any]]:
         if not request_url.endswith("/"):
             request_url = request_url + "/"
+        if not data:
+            raise ValueError(
+                "Empty request body. Please add"
+                + " some args to the data object."
+            )
+        data_ = "; ".join(f"{k} {v}" for k, v in data.items()) + ";"
         res = requests.post(
             url=request_url + endpoint,
             headers={
                 "Client-ID": self.client_id,
                 "Authorization": f"Bearer {self.access_token}"
             },
-            json={"fields": "*;"}
+            data=data_
         ).json()
         return res
-    
-
-def main():
-    try:
-        endpoint = sys.argv[1]
-    except IndexError:
-        endpoint = "games"
-    env_pth = Path.cwd() / ".env"
-    assert env_pth.exists() and env_pth.is_file()
-    env_loaded = load_dotenv(env_pth)
-    if not env_loaded:
-        raise RuntimeError(
-            f"Unable to load .env at {env_pth}"
-        )
-    api_manager = IGDBAPIStuff(
-        client_id=os.environ["igdb_client_id"],
-        client_secret=os.environ["igdb_client_secret"],
-    )
-    print(json.dumps(api_manager.post_request(endpoint),
-                     indent=4))
-
-
-if __name__ == '__main__':
-    main()
