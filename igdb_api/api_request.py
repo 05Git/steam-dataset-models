@@ -10,10 +10,10 @@ import csv
 import json
 import logging
 import os
+import platform
 from argparse import ArgumentParser, ArgumentTypeError, Namespace
 from datetime import UTC, datetime
 from pathlib import Path
-import platform
 from typing import Any
 
 logger = logging.getLogger(__name__)
@@ -59,6 +59,14 @@ def parse_args() -> Namespace:
         "--output-type", "-o",
         type=str, default="json",
         choices=_VALID_OUTPUT_TYPES
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=Path, required=False
+    )
+    parser.add_argument(
+        "--output-file-name",
+        type=str, required=False
     )
     parser.add_argument(
         "--dotenv",
